@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <nav class="h-20 p-6 flex items-center">
+        <button onclick="(() => {window.history.back()})()" class="pr-4 text-xl">&lt;</button>
+        <h1 class=" font-bold text-3xl">Feed Schedule</h1>
+    </nav>
+    <section class="px-6">
+        <div class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex items-center justify-between">
+                <p class="text-2xl font-semibold">07:00</p>
+                <button class="w-12 h-6 rounded-full round bg-gray-300 p-1 flex flex-row-reverse">
+                    <div class="h-full aspect-square bg-white rounded-full"></div>
+                </button>
+            </div>
+            <p>Amount: 30g</p>
+        </div>
+        <div class="h-4"></div>
+        <div class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex items-center justify-between">
+                <p class="text-2xl font-semibold">08:00</p>
+                <button class="w-12 h-6 rounded-full round bg-gray-300 p-1 flex flex-row">
+                    <div class="h-full aspect-square bg-white rounded-full"></div>
+                </button>
+            </div>
+            <p>Amount: 30g</p>
+        </div>
+        <div class="h-4"></div>
+        <div class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex items-center justify-between">
+                <p class="text-2xl font-semibold">12:00</p>
+                <button class="w-12 h-6 rounded-full round bg-gray-300 p-1 flex flex-row-reverse">
+                    <div class="h-full aspect-square bg-white rounded-full"></div>
+                </button>
+            </div>
+            <p>Amount: 30g</p>
+        </div>
+        <div class="h-4"></div>
+        <div class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex items-center justify-between">
+                <p class="text-2xl font-semibold">18:00</p>
+                <button class="w-12 h-6 rounded-full round bg-gray-300 p-1 flex flex-row-reverse">
+                    <div class="h-full aspect-square bg-white rounded-full"></div>
+                </button>
+            </div>
+            <p>Amount: 30g</p>
+        </div>
+        <div class="h-4"></div>
+        <button class="font-semibold py-1 px-4 bg-black text-white rounded-full">+ Add schedule</button>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Feeder Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+
+<body class="overflow-x-hidden">
+    <nav class="h-20 p-6 flex items-center justify-between font-bold text-3xl">
+        <h1 class="">Dashboard</h1>
+        <span class="">O</span>
+    </nav>
+    <section class="px-6">
+        <section class="relative aspect-[3/2] rounded-2xl overflow-hidden">
+            <img src="https://m.media-amazon.com/images/M/MV5BOTA3NmU1NDMtYzcxMC00ZjI5LTllZWItYWI3MmZkNTE1ZTg0XkEyXkFqcGdeQW1hcmNtYW5u._V1_.jpg" class="w-full h-full" style="object-fit: cover;">
+            <div class="absolute top-0 left-0 w-full h-full z-20 bg-gradient-to-t from-black to-transparent to-25%"></div>
+            <p class="text-white z-50 absolute bottom-4 left-4 text-2xl font-semibold">Captured 30 mins ago</p>
+            <button class="absolute top-4 right-4 bg-green-400 px-4 py-2 rounded-full">See Live</button>
+        </section>
+        <div class="w-full h-4"></div>
+        <section class="p-4 rounded-2xl border border-slate-300">
+            <!-- <div class="flex items-center justify-between">
+                <h3 class="font-semibold text-2xl">Feed Schedule</h3>
+                <p class="font-semibold py-1 px-4 bg-black text-white rounded-full">Edit</p>
+            </div> -->
+            <div class="flex items-center justify-between font-semibold text-2xl">
+                <p>Next Feed:</p>
+                <p>15:00</p>
+            </div>
+            <div class="h-4"></div>
+            <div class="flex items-center justify-between text-md">
+                <p>Last Feed:</p>
+                <p>15:00</p>
+            </div>
+            <div class="flex items-center justify-between text-md">
+                <p>Time eat:</p>
+                <p>3:32</p>
+            </div>
+            <div class="flex items-center justify-between text-md">
+                <p>Amount:</p>
+                <p>30g</p>
+            </div>
+            <div class="h-4"></div>
+            <div class="flex gap-4 w-full">
+                <button class="basis-1/2 font-semibold py-1 px-4 bg-black text-white rounded-full">Feed now</button>
+                <a href="/change-schedule.html" class="basis-1/2 font-semibold py-1 px-4 bg-black text-white rounded-full">Change schedule</a>
+            </div>
+            <!-- <div class="p-4 flex flex-col items-center">
+                <p class="font-semibold text-2xl text-slate-500">12:00</p>
+                <p class="font-semibold text-4xl">17:00</p>
+                <p class="font-semibold text-2xl text-slate-500">07:00</p>
+            </div> -->
+        </section>
+        <div class="h-4"></div>
+        <section class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex justify-between items-center">
+                <p class="font-semibold text-2xl">Pet's status</p>
+                <a href="/pet-status.html" class="text-2xl">→</a>
+            </div>
+            <div class="h-4"></div>
+            <div class="w-full flex flex-1 overflow-auto">
+                <div class="flex w-full gap-8">
+                    <canvas id="food-chart"></canvas>
+                    <canvas id="water-chart"></canvas>
+                </div>
+            </div>
+        </section>
+        <div class="h-4"></div>
+        <section class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex justify-between items-center">
+                <p class="font-semibold text-2xl">Enviroment</p>
+                <a href="/pet-status.html" class="text-2xl">→</a>
+            </div>
+            <div class="h-4"></div>
+            <div class="flex items-center gap-4">
+                <div class="basis-1/2 w-32 aspect-square relative">
+                    <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-4xl">36</p>
+                    <canvas id="temp-gauge"></canvas>
+                </div>
+                <div class="basis-1/2 w-32 aspect-square relative">
+                    <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-4xl">36</p>
+                    <canvas id="mois-gauge"></canvas>
+                </div>
+            </div>
+        </section>
+        <div class="h-4"></div>
+        <section class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex justify-between items-center">
+                <p class="font-semibold text-2xl">Device status</p>
+                <a href="/device-status.html" class="text-2xl">→</a>
+            </div>
+            <div class="h-1"></div>
+            <p class="text-md">Battery: 20%, about 4hrs left</p>
+            <div class="flex gap-4">
+                <div class="basis-1/2 w-32 aspect-square relative">
+                    <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-4xl">10%</p>
+                    <canvas id="food-gauge"></canvas>
+                </div>
+                <div class="basis-1/2 w-32 aspect-square relative">
+                    <p class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-bold text-4xl">10%</p>
+                    <canvas id="water-gauge"></canvas>
+                </div>
+            </div>
+            <div class="px-4 py-3 rounded-xl border border-red-900 bg-red-100 text-red-900">
+                <p>Consider adding food and water soon</p>
+            </div>
+        </section>
+        <div class="h-4"></div>
+        <section class="p-4 rounded-2xl border border-slate-300">
+            <div class="flex justify-between items-center">
+                <p class="font-semibold text-2xl">Device's log</p>
+                <a href="/device-log.html" class="text-2xl">→</a>
+            </div>
+            <div class="h-4"></div>
+            <div class="p-4 rounded-md bg-gray-300">
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+                <code>A whole bunch of logs</code>
+            </div>
+        </section>
+    </section>
+    <script>
+        const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+        const yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
+        new Chart("water-chart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: "Water consumed",
+                    backgroundColor: "rgba(0,0,0,0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                aspectRatio: 1,
+                plugins: {
+                    // title: {
+                    //     display: true,
+                    //     position: 'bottom',
+                    //     text: 'Water consumed',
+                    // }
+                }
+            }
+        });
+        new Chart("food-chart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: "Food consumed",
+                    backgroundColor: "rgba(0,0,0,0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                aspectRatio: 1,
+                plugins: {
+                    // title: {
+                    //     display: true,
+                    //     position: 'bottom',
+                    //     text: 'Food consumed',
+                    // }
+                }
+            }
+        });
+
+        new Chart("temp-gauge", {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    label: 'Temp now',
+                    data: [36, 50 - 36],
+                    backgroundColor: [
+                        'rgb(255, 50, 50)',
+                        '#c4c4c4',
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                cutout: "60%",
+                rotation: -120,
+                circumference: 240,
+                aspectRatio: 1,
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Temperature',
+                    }
+                }
+            },
+        })
+
+        new Chart("mois-gauge", {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    label: 'Humidity now',
+                    data: [36, 50 - 36],
+                    backgroundColor: [
+                        'rgb(100, 100, 255)',
+                        '#c4c4c4',
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                cutout: "60%",
+                rotation: -120,
+                circumference: 240,
+                aspectRatio: 1,
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Humidity',
+                    }
+                }
+            },
+        })
+
+        new Chart("food-gauge", {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    label: 'Food',
+                    data: [10, 100 - 10],
+                    backgroundColor: [
+                        'rgb(255,10,10)',
+                        '#c4c4c4',
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                cutout: "60%",
+                rotation: -120,
+                circumference: 240,
+                aspectRatio: 1,
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Food',
+                    }
+                }
+            },
+        })
+
+        new Chart("water-gauge", {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    label: 'Water',
+                    data: [10, 100 - 10],
+                    backgroundColor: [
+                        'rgb(255,10,10)',
+                        '#c4c4c4',
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                cutout: "60%",
+                rotation: -120,
+                circumference: 240,
+                aspectRatio: 1,
+                plugins: {
+                    title: {
+                        display: true,
+                        position: 'bottom',
+                        text: 'Water',
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

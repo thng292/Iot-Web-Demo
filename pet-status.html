@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet's status</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <nav class="h-20 p-6 flex items-center">
+        <button onclick="(() => {window.history.back()})()" class="pr-4 text-xl">&lt;</button>
+        <h1 class=" font-bold text-3xl">Pet's status</h1>
+    </nav>
+    <section class="px-6">
+        <div class="flex text-xl font-bold items-center gap-2">
+            <p>From:</p>
+            <button class="border border-slate-300 rounded-md px-4 py-1">Jan 1</button>
+            <p>to</p>
+            <button class="border border-slate-300 rounded-md px-4 py-1">Jan 30</button>
+        </div>
+        <div class="border border-slate-300 m-2"></div>
+        <div class="flex justify-between items-center">
+            <h3 class="text-2xl font-semibold">Food comsumed</h3>
+        </div>
+        <canvas id="food-chart"></canvas>
+        <div class="h-4"></div>
+        <div class="flex justify-between items-center">
+            <h3 class="text-2xl font-semibold">Water comsumed</h3>
+        </div>
+        <canvas id="water-chart"></canvas>
+    </section>
+    <script>
+        const xValues = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+        const yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
+
+        new Chart("food-chart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: "Food consumed",
+                    backgroundColor: "rgba(0,0,0,0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                aspectRatio: 1,
+                plugins: {
+                    // title: {
+                    //     display: true,
+                    //     position: 'bottom',
+                    //     text: 'Water consumed',
+                    // }
+                }
+            }
+        });
+
+        new Chart("water-chart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    label: "Water consumed",
+                    backgroundColor: "rgba(0,0,0,0)",
+                    borderColor: "rgba(0,0,255,0.1)",
+                    data: yValues
+                }]
+            },
+            options: {
+                aspectRatio: 1,
+                plugins: {
+                    // title: {
+                    //     display: true,
+                    //     position: 'bottom',
+                    //     text: 'Water consumed',
+                    // }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
