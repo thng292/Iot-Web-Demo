@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add schedule</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <nav class="h-20 p-6 flex items-center">
+        <button onclick="(() => {window.history.back()})()" class="pr-4 text-xl">&lt;</button>
+        <h1 class=" font-bold text-3xl">Add schedule</h1>
+    </nav>
+    <section class="px-6">
+        <div class="flex items-center justify-center gap-4 h-[20vh]">
+            <div class="aspect-square w-32 flex items-center justify-center rounded-2xl border border-slate-300 font-semibold" style="font-size: 5rem;">
+                19
+            </div>
+            <div class="aspect-square w-32 flex items-center justify-center rounded-2xl border border-slate-300 font-semibold" style="font-size: 5rem;">
+                00
+            </div>
+        </div>
+        <div class="p-4 rounded-2xl border border-slate-300 flex items-center justify-between">
+            <p>Audio</p>
+            <button class="font-semibold py-1 px-4 bg-black text-white rounded-full">Select file</button>
+        </div>
+        <div class="h-4"></div>
+        <div class="p-4 rounded-2xl border border-slate-300 flex items-center justify-between">
+            <p>Food Amount</p>
+            <div class="flex gap-1 py-1">
+                <input class="w-12 text-right" type="text" inputmode="numeric" placeholder="30">
+                <p>g</p>
+            </div>
+        </div>
+        <div class="h-4"></div>
+        <div class="p-4 rounded-2xl border border-slate-300 flex items-center justify-between">
+            <p>Feed Duration</p>
+            <div class="flex gap-1 py-1">
+                <input class="w-12 text-right" type="text" inputmode="numeric" placeholder="30">
+                <p>mins</p>
+            </div>
+        </div>
+        <button onclick="(()=>history.back())()" class="fixed bottom-4 left-4 right-4 font-semibold p-4 bg-black text-white rounded-full">
+            <p class="w-full text-xl font-bold text-center">Save</p>
+        </button>
+    </section>
+</body>
+
+</html>
